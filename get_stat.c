@@ -1,6 +1,7 @@
 
 # include "ft_ls.h"
 
+
 char *translate_name(uid_t st_uid)
 {
 	struct passwd *translate;
@@ -23,37 +24,94 @@ char *translate_group(gid_t st_gid)
 	return(group);
 
 }
-void register_info(char *way, t_opt option)
+
+
+
+void register_info(char *way, t_opt option, int len_list, t_lslist *list)
 {
 	struct stat info;
-	t_statinfo	*stock;
+	t_statinfo	*tab;
+	char *complet_way;
+	int j;
 
-	stock = malloc(sizeof(t_info));
-	if(stat(way, &info) == 0)
+	j = 0;
+	tab = (t_statinfo *)malloc(sizeof(t_statinfo) * (len_list +1));
+	while(list != NULL)
 	{
-		stock->st_size = ft_itoa(info.st_size);
-		stock->st_nlink = ft_itoa(info.st_nlink);
-		if(option == OPT_L)
+		//ft_print_list(list);
+		complet_way = ft_xstrjoin(way, list->contenu.name);
+		if(stat(complet_way, &info) == 0)
 		{
-			stock->st_uid = translate_name(info.st_uid);
-			stock->st_gid = translate_group(info.st_gid);
+			tab[j].name = list->contenu.name;
+			tab[j].taille = ft_itoa(info.st_size);
+			tab[j].link = ft_itoa(info.st_nlink);
+			tab[j].blksize = ft_itoa(info.st_blocks);
+			tab[j].date = split_date(ctime(&(info.st_mtime)));
+			if(option == OPT_L)
+			{
+				tab[j].st_uid = translate_name(info.st_uid);
+				tab[j].st_gid = translate_group(info.st_gid);
+			}
+			else
+			{
+				tab[j].st_uid = ft_itoa(info.st_uid);
+				tab[j].st_gid = ft_itoa(info.st_gid);
+			}
+			tab[j].mode = get_mode(info);
 		}
-		ft_putendl(stock->st_gid);
+
+		j++;
+		list = list->next;
 	}
+	get_alignement(tab, len_list);
 }
 
 void get_stat(t_lslist *list, char *way, t_opt option)
 {
 	char *complet_way;
+	t_lslist *compt;
+	t_statinfo stock;
+	int i;
 
-	while(list != NULL)
+	i = 0;
+	compt = list;
+	while(compt != NULL)
 	{
-		way = ft_strjoin(way, "/");
-		complet_way = ft_strjoin(way, list->contenu.name);
-		register_info(complet_way, option);
-		list = list->next;
-
+		compt = compt->next;
+		i++;
 	}
-}
+	way = ft_strjoin(way, "/");
+	register_info(way, option,  i, list);
+
+	//ft_putendl(stock[0].name);
+}	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

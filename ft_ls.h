@@ -9,6 +9,7 @@
 # include <sys/types.h>
 # include <pwd.h>
 # include <grp.h>
+# include <time.h>
 
 
 # define OPT1(x) (x == 'l' || x == 'n' || x == 'a' || x == 't') 
@@ -26,14 +27,15 @@ typedef int			t_opt;
 
 typedef struct		s_statinfo
 {
-	size_t			*name;
-	size_t			*date;
+	char			*taille;
+	char			*name;
 	char			*st_uid;
 	char			*st_gid;
-	char			*st_nlink;
-	size_t			*file_name;
-	char			*st_size;
-	size_t			*file_mode;
+	char			*link;
+	char			*blksize;
+	char			*date;
+	int 			total;
+	char			*mode;
 }					t_statinfo;
 
 
@@ -50,10 +52,14 @@ typedef struct		s_lslist
 }					t_lslist;
 
 
-int main(int ac, char **av);
 t_lslist *opening(char *str, int option);
 t_opt init_opt(char **av, t_opt option, int rep);
-void	print(t_lslist *list, t_opt option, char *str);
+int main(int ac, char **av);
+void print(t_lslist *list, t_opt option, char *str);
 void get_stat(t_lslist *list, char *way, t_opt option);
+void get_alignement(t_statinfo *tab, int compteur);
+void ft_print_list(t_lslist *list);
+char *get_mode(struct stat info);
+char *split_date(char *str);
 
 #endif

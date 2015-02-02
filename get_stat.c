@@ -27,18 +27,19 @@ char *translate_group(gid_t st_gid)
 
 
 
-void register_info(char *way, t_opt option, int len_list, t_lslist *list)
+void register_info(char *way, t_opt option, int len_list, t_lslist *list, int pts)
 {
 	struct stat info;
 	t_statinfo	*tab;
 	char *complet_way;
 	int j;
+	
 
 	j = 0;
 	tab = (t_statinfo *)malloc(sizeof(t_statinfo) * (len_list +1));
 	while(list != NULL)
 	{
-		//ft_print_list(list);
+		
 		complet_way = ft_xstrjoin(way, list->contenu.name);
 		if(stat(complet_way, &info) == 0)
 		{
@@ -59,14 +60,14 @@ void register_info(char *way, t_opt option, int len_list, t_lslist *list)
 			}
 			tab[j].mode = get_mode(info);
 		}
-
+	ft_putnbr(total);
 		j++;
 		list = list->next;
 	}
-	get_alignement(tab, len_list);
+	get_alignement(tab, len_list, option, pts);
 }
 
-void get_stat(t_lslist *list, char *way, t_opt option)
+void get_stat(t_lslist *list, char *way, t_opt option, int pts)
 {
 	char *complet_way;
 	t_lslist *compt;
@@ -81,7 +82,7 @@ void get_stat(t_lslist *list, char *way, t_opt option)
 		i++;
 	}
 	way = ft_strjoin(way, "/");
-	register_info(way, option,  i, list);
+	register_info(way, option,  i, list, pts);
 
 	//ft_putendl(stock[0].name);
 }	

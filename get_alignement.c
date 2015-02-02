@@ -2,36 +2,39 @@
 
 #include "ft_ls.h"
 
-void	get_alignement(t_statinfo *tab, int compteur)
+void	get_alignement(t_statinfo *tab, int compteur, t_opt option, int pts)
 {
-	int len_nom;
-	int len_taille;
-	int len_total;
-	int len_name;
-	int len_uid;
-	int len_gid;
-	int	len_link;
-	int index;
+	t_getallign len;
+	int i;
 
-	len_nom = 0;
-	len_taille = 0;
-	len_mode = 0;
-	len_name = 0;
-	len_uid = 0;
-	len_gid = 0;
-	len_link = 0;
-	index = 0;
+	i = 0;
+	len.len_nom = 0;
+	len.len_taille = 0;
+	len.len_name = 0;
+	len.len_uid = 0;
+	len.len_gid = 0;
+	len.len_link = 0;
+	len.index = 0;
 
 
-	while(index < compteur)
+	while(len.index < compteur)
 	{	
-		len_nom = len_nom < ft_strlen(tab[index].name) ? ft_strlen(tab[index].name) : len_nom;
-		len_total = len_total < ft_strlen(tab[index].blksize) ? ft_strlen(tab[index].blksize) : len_total;
-		len_uid = len_uid < ft_strlen(tab[index].st_uid) ? ft_strlen(tab[index].st_uid) : len_uid;
-		len_gid = len_gid < ft_strlen(tab[index].st_gid) ? ft_strlen(tab[index].st_gid) : len_gid;
-		len_taille = len_taille < ft_strlen(tab[index].taille) ? ft_strlen(tab[index].taille) : len_taille;
-		len_link = len_link < ft_strlen(tab[index].link) ? ft_strlen(tab[index].link) : len_link;
-		index++;
+		len.len_nom = len.len_nom < ft_strlen(tab[len.index].name) ? ft_strlen(tab[len.index].name) : len.len_nom;
+		len.len_total = len.len_total < ft_strlen(tab[len.index].blksize) ? ft_strlen(tab[len.index].blksize) : len.len_total;
+		len.len_uid = len.len_uid < ft_strlen(tab[len.index].st_uid) ? ft_strlen(tab[len.index].st_uid) : len.len_uid;
+		len.len_gid = len.len_gid < ft_strlen(tab[len.index].st_gid) ? ft_strlen(tab[len.index].st_gid) : len.len_gid;
+		len.len_taille = len.len_taille < ft_strlen(tab[len.index].taille) ? ft_strlen(tab[len.index].taille) : len.len_taille;
+		len.len_link = len.len_link < ft_strlen(tab[len.index].link) ? ft_strlen(tab[len.index].link) : len.len_link;
+		len.index++;
 	}
+	if (option == (OPT_L + OPT_A)) // gere avec le nbr de dossier cacher
+		i = 0;
+	i = pts;
 
+
+	while(i < compteur)
+	{
+		final_string(&len,tab, i, option, pts);
+		i++;
+	}
 }

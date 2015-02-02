@@ -22,5 +22,6 @@ int check_arg(int ac, char **av)
 		j = 1;
 		i++;
 	}
+
 	return (i); // posi dossier
 }

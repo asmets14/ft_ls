@@ -13,6 +13,7 @@ int main(int ac, char **av)
 	rep = 0;
 	if(ac > 1)
 	{
+		printf("ac = %d\n", ac );
 		if((rep = check_arg(ac, av)) != 0)
 		{
 			option = init_opt(av, option, rep);
@@ -24,9 +25,13 @@ int main(int ac, char **av)
 					list = opening(repository, option);	
 					rep++;
 				}
+
 			}
 			else
-				list = opening(".", option);
+			{
+				repository = ".";
+				list = opening(repository, option);
+			}
 		}
 		print(list, option, repository);
 	}

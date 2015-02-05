@@ -2,27 +2,23 @@ NAME = ft_ls
 
 cc = GCC
 
-FLAGS = -Wall -Weror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
-SRC = check_arg.c\
-      create_space.c\
-      final_string.c\
-      ft_print_list.c\
-      get_alignement.c\
-      get_mode.c\
-      get_stat.c\
-      init_opt.c\
-      main.c\
-      opening.c\
-      print.c\
-      split_date.c
+HEAD = -I .
+
+LIB = libft/libft.a
+LIB_H = -I libft
+
+SRC = *.c
+
 
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
 
 $(NAME) :
-	$(CC) -c $(FLAGS) $(SRC)
+	$(CC) -c $(SRC) $(LIB_H) $(HEAD)
+	$(CC) $(OBJ) $(LIB_H) $(LIB) $(HEAD) -o $(NAME)
 
 clean :
 	rm -f $(OBJ)

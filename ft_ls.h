@@ -65,15 +65,18 @@ typedef struct s_getallign
 
 
 t_lslist *opening(char *str, int option);
+t_lslist *create_list(t_lslist *list, char *name);
 t_opt init_opt(char **av, t_opt option, int rep);
 int main(int ac, char **av);
 void print(t_lslist *list, t_opt option, char *str);
-void get_stat(t_lslist *list, char *way, t_opt option, int pts);
-void get_alignement(t_statinfo *tab, int compteur, t_opt option, int pts);
-void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option, int pts);
+void get_stat(t_lslist *list, char *way, t_opt option);
+void get_alignement(t_statinfo *tab, int compteur, t_opt option);
+void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option);
 void ft_print_list(t_lslist *list);
+t_lslist *R(char *str, t_lslist *fichier, t_lslist *dossier, t_lslist *tmp);
 char *get_mode(struct stat info);
 char *split_date(char *str);
 void create_space(int len, char *tab);
+int check_arg(int ac, char **av);
 
 #endif

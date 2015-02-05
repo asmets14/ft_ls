@@ -2,7 +2,7 @@
 
 #include "ft_ls.h"
 
-void	get_alignement(t_statinfo *tab, int compteur, t_opt option, int pts)
+void	get_alignement(t_statinfo *tab, int compteur, t_opt option)
 {
 	t_getallign len;
 	int i;
@@ -27,14 +27,14 @@ void	get_alignement(t_statinfo *tab, int compteur, t_opt option, int pts)
 		len.len_link = len.len_link < ft_strlen(tab[len.index].link) ? ft_strlen(tab[len.index].link) : len.len_link;
 		len.index++;
 	}
-	if (option == (OPT_L + OPT_A)) // gere avec le nbr de dossier cacher
-		i = 0;
-	i = pts;
+	//if (option == (OPT_L + OPT_A)) // gere avec le nbr de dossier cacher
+	//	i = 0;
+	i = 0;
 
 
 	while(i < compteur)
 	{
-		final_string(&len,tab, i, option, pts);
+		final_string(&len,tab,i, option);
 		i++;
 	}
 }

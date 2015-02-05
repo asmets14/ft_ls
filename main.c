@@ -13,7 +13,6 @@ int main(int ac, char **av)
 	rep = 0;
 	if(ac > 1)
 	{
-		printf("ac = %d\n", ac );
 		if((rep = check_arg(ac, av)) != 0)
 		{
 			option = init_opt(av, option, rep);

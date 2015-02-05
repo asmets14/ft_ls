@@ -2,41 +2,19 @@
 
 char *split_date(char *str)
 {
-	char mois[4];
-	char date[3];
-	char heure[6];
+	char *mois;
+	char *date;
+	char *heure;
 	char *new;
 	int i;
 	int j;
 
-	j = 0;
-	i = 4;
-
-	while(str[i])
-		str[j++] = str[i++];
-	str[j + 1] = '\0';
-	i = 0;
-	while(i < 3)
-	{
-		mois[i] = str[i];
-		i++;
-	}
-	mois[i++] = '\0';
-	j = 0;
-
-	while (i < 7)
-	{
-		date[j] = str[i];
-		i++;
-		j++;
-	}
-	//date[j++] = '\0';
-	j = 0;
-	while (i < 12)
-		heure[j++] = str[i++];
-	heure[j++] = '\0';
-	new = ft_strjoin(date, " ");
-	new = ft_xstrjoin_free(new, heure, 'g');
-
+	mois = ft_strsub(str, 4, 3);
+	date = ft_strsub(str, 9, 1);
+	heure = ft_strsub (str, 11, 5);
+	new = ft_xstrjoin(mois, "  ");
+	new = ft_xstrjoin_free(new, date, 'g');
+	new = ft_xstrjoin_free (new , " ", 'g');
+ 	new = ft_xstrjoin_free(new, heure, 'g');
 	return (new);
 }

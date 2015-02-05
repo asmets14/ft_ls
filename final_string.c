@@ -7,7 +7,7 @@ int dossier(char *mode)
 	return (0);
 }
 
-void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option, int pts)
+void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option)
 {
 	char *new;
 	ft_putstr(tab[i].mode);
@@ -23,8 +23,8 @@ void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option, int pt
 		ft_putstr(" ");
 	if(dossier(tab[i].mode) == 1)
 	{
-		ft_putstr(tab[i].name);
-		ft_putendl("/");
+		ft_putendl(tab[i].name);
+	//	ft_putendl("/");
 	}
 	else
 		ft_putendl(tab[i].name);

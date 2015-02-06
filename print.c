@@ -4,7 +4,6 @@
 void		print(t_lslist *list, t_opt option, char *str)
 {
 	int info;
-	int pts;
 	t_lslist *tmp;
 
 	tmp = list;
@@ -28,6 +27,6 @@ void		print(t_lslist *list, t_opt option, char *str)
 		get_stat(tmp, str, option);
 
 	}
-/*	if (option == OPT_R)
-		recursive()*/
+	if (option == OPT0R)
+		R(tmp, str, option);
 }

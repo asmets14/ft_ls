@@ -1,37 +1,45 @@
+
+
 #include "ft_ls.h"
 
-t_lslist *R(char *str, t_lslist *fichier, t_lslist *dossier, t_lslist *tmp)
-{
-	struct dirent *readfile;
-	struct stat info;
-	DIR *rep;
-	char *way;
+#include <sys/stat.h>
 
-	way = ft_xstrjoin(str, "/");
-	rep = opendir(str);
-	while ((readfile = readdir(rep)) != NULL)
+int		twl_isdir(char *path)
+{
+	struct stat st;
+
+	lstat(path, &st);
+	// printf("[{%s}]\n", path);
+	return (S_ISDIR(st.st_mode));
+}
+
+void R(t_lslist *list, char *way, t_opt option)
+{
+	t_lslist *new_lst;
+	char *fullpath;
+	struct stat *info;
+	ft_print_list_without_point(list);
+	ft_putchar('\n');
+	way = ft_xstrjoin(way, "/"); 
+	while (list)
 	{
-		way = ft_xstrjoin_free(way, readfile->d_name, 'g');
-		lstat(way, &info);
-	 	if (S_ISDIR(info.st_mode))
-	 	{
-	 		// printf("coucuo\n");	
-	 		dossier = create_list(dossier, readfile->d_name);
-	 	}
-	 	else
-	 		fichier = create_list(fichier, readfile->d_name);
+		fullpath = ft_xstrjoin(way, list->contenu.name);
+		if (ft_strcmp(list->contenu.name, ".") && ft_strcmp(list->contenu.name, ".."))
+		{		
+			if (twl_isdir(fullpath))
+			{
+				new_lst = opening(fullpath, option);
+				if (!(list->contenu.name[0] == '.'))
+				{	
+					ft_putstr("\033[32m");
+				 	ft_putstr(fullpath);
+				 	ft_putendl(":");
+				 		ft_putstr("\033[0m");
+					R(new_lst, fullpath, option);
+				}
+
+			}
+		}
+		list = list->next;
 	}
-	printf("fichier \n");
-	ft_print_list(fichier);
-	printf("DOSSIER\n");
-	ft_print_list(dossier);
-	if (dossier && fichier)
-	{
-		tmp = fichier;
-		while (tmp->next)
-				tmp = tmp->next;
-		tmp->next = dossier;
-	}
-	
-	return (fichier);
 }

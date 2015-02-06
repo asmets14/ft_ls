@@ -10,7 +10,7 @@ t_lslist *create_list(t_lslist *list, char *name)
 	tmp = list;
 	if(new)
 	{
-		new->contenu.name = name;
+		new->contenu.name = ft_strdup(name);
 		new->next = NULL;
 		if(!list)
 			return (new);

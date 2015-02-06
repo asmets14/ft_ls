@@ -15,11 +15,16 @@ t_lslist  *opening(char *str, t_opt option)
 		rep = opendir(str);
 		while ((readfile = readdir(rep)) != NULL)
 		{
+		// 			printf("\033[34m \n");
+		// 	printf("NOM = %s\n", readfile->d_name);
+		// printf("XXXX\033[0m\n");
 			if (readfile->d_name[0] >= 33 && readfile->d_name[0] <= 90)
 				l_maj = create_list(l_maj, readfile->d_name);
 			else if (readfile->d_name[0] >= 97 && readfile->d_name[0] <= 122)
 				l_min = create_list(l_min, readfile->d_name);
 		}
+		// printf("\033[32m MAJ =\n");
+		// printf("XXXX\033[0m\n");
 		if (l_maj && l_min) // List final = l_maj
 		{
 			tmp = l_maj;
@@ -27,6 +32,5 @@ t_lslist  *opening(char *str, t_opt option)
 				tmp = tmp->next;
 			tmp->next = l_min;
 		}
-
 	return(l_maj);
 }

@@ -25,6 +25,10 @@ typedef int			t_opt;
 # define OPT_N 0x02
 # define OPT_L 0x01
 
+int chausette;
+
+chaussette | 80;
+
 typedef struct		s_statinfo
 {
 	char			*taille;
@@ -36,6 +40,8 @@ typedef struct		s_statinfo
 	char			*date;
 	int 			total;
 	char			*mode;
+	char 			*d_minor;
+	char 			*d_major;
 }					t_statinfo;
 
 
@@ -73,7 +79,7 @@ void get_stat(t_lslist *list, char *way, t_opt option);
 void get_alignement(t_statinfo *tab, int compteur, t_opt option);
 void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option);
 void ft_print_list(t_lslist *list);
-void	ft_print_list_without_point(t_lslist *list);
+void ft_print_list_without_point(t_lslist *list);
 void R(t_lslist *list, char *way, t_opt option);
 char *get_mode(struct stat info);
 char *split_date(char *str);

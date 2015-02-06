@@ -60,9 +60,11 @@ void register_info(char *way, t_opt option, int len_list, t_lslist *list)
 				tab[j].st_gid = ft_itoa(info.st_gid);
 			}
 			tab[j].mode = get_mode(info);
+			tab[j].d_major = ft_itoa(major(info.st_rdev));
+			tab[j].d_minor = ft_itoa(minor(info.st_rdev));
+			j++;
 		}
 		total += info.st_blocks;
-		j++;
 		list = list->next;
 	}
 	ft_putstr("total ");
@@ -90,33 +92,3 @@ void get_stat(t_lslist *list, char *way, t_opt option)
 
 	//ft_putendl(stock[0].name);
 }	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

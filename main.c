@@ -24,7 +24,6 @@ int main(int ac, char **av)
 					list = opening(repository, option);	
 					rep++;
 				}
-
 			}
 			else
 			{

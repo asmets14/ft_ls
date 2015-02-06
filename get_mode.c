@@ -5,9 +5,19 @@ char *get_mode(struct stat info)
 	char *mode;
 
 	mode = ft_memalloc(11);
-	if(info.st_mode & S_IFDIR)
+	if (S_ISLNK(info.st_mode))
+		mode[0] = 'l';
+	else if (S_ISDIR(info.st_mode))
 		mode[0] = 'd';
-	else
+	else if (S_ISSOCK(info.st_mode))
+		mode[0] = 's';
+	else if (S_ISFIFO(info.st_mode))
+		mode[0] = 'p';
+	else if (S_ISCHR(info.st_mode))
+		mode[0] = 'c';
+	else if (S_ISBLK(info.st_mode))
+		mode[0] = 'b';
+	else 
 		mode[0] = '-';
 	mode[1] = ((info.st_mode & S_IRUSR) ? 'r' : '-');
 	mode[2] = ((info.st_mode & S_IWUSR) ? 'w' : '-');

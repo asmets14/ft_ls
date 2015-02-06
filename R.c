@@ -2,14 +2,12 @@
 
 #include "ft_ls.h"
 
-#include <sys/stat.h>
 
 int		twl_isdir(char *path)
 {
 	struct stat st;
 
 	lstat(path, &st);
-	// printf("[{%s}]\n", path);
 	return (S_ISDIR(st.st_mode));
 }
 
@@ -23,9 +21,7 @@ void R(t_lslist *list, char *way, t_opt option)
 	way = ft_xstrjoin(way, "/"); 
 	while (list)
 	{
-		fullpath = ft_xstrjoin(way, list->contenu.name);
-		if (ft_strcmp(list->contenu.name, ".") && ft_strcmp(list->contenu.name, ".."))
-		{		
+		fullpath = ft_xstrjoin(way, list->contenu.name);	
 			if (twl_isdir(fullpath))
 			{
 				new_lst = opening(fullpath, option);
@@ -34,12 +30,12 @@ void R(t_lslist *list, char *way, t_opt option)
 					ft_putstr("\033[32m");
 				 	ft_putstr(fullpath);
 				 	ft_putendl(":");
-				 		ft_putstr("\033[0m");
+				 	ft_putstr("\033[0m");
 					R(new_lst, fullpath, option);
 				}
 
 			}
-		}
+	
 		list = list->next;
 	}
 }

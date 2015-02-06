@@ -9,7 +9,7 @@ int dossier(char *mode)
 
 void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option)
 {
-	char *new;
+	char *new;	
 	ft_putstr(tab[i].mode);
 	ft_putstr(" ");
 	create_space(len->len_link, tab[i].link);
@@ -17,17 +17,16 @@ void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option)
 	ft_putstr(" ");
 	create_space(len->len_gid, tab[i].st_gid);
 	ft_putstr(" ");
-	create_space(len->len_taille, tab[i].taille);
-	ft_putstr(" ");
-	ft_putstr(tab[i].date);
-		ft_putstr(" ");
-	if(dossier(tab[i].mode) == 1)
+	if(tab[i].d_minor || tab[i].d_major)
 	{
-		ft_putendl(tab[i].name);
-	//	ft_putendl("/");
+		ft_putstr(tab[i].d_minor);
+		ft_putstr(", ");
+		ft_putstr(tab[i].d_major);
 	}
 	else
-		ft_putendl(tab[i].name);
-
-
+		create_space(len->len_taille, tab[i].taille);
+	ft_putstr(" ");
+	ft_putstr(tab[i].date);
+	ft_putstr(" ");
+	ft_putendl(tab[i].name);
 }

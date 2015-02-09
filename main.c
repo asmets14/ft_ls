@@ -9,7 +9,6 @@ int main(int ac, char **av)
 	t_lslist *list;
 	
 	list = NULL;
-	option = 0x0	;
 	rep = 0;
 	if(ac > 1)
 	{

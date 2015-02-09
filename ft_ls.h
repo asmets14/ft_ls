@@ -12,11 +12,11 @@
 # include <time.h>
 # include <stdio.h>
 
-# define OPT1(x) (x == 'l' || x == 'n' || x == 'a' || x == 't') 
-# define OPT2(x) (x == 'r' || x == 'R' )
-# define OPT(x) (OPT1(x) || OPT2(x)) 
+// # define OPT1(x) (x == 'l' || x == 'n' || x == 'a' || x == 't') 
+// # define OPT2(x) (x == 'r' || x == 'R' )
+// # define OPT(x) (OPT1(x) || OPT2(x)) 
 
-typedef int			t_opt;
+// typedef int			t_opt;
 
 # define OPT0R 0x20
 # define OPT_R 0x10
@@ -25,9 +25,7 @@ typedef int			t_opt;
 # define OPT_N 0x02
 # define OPT_L 0x01
 
-int chausette;
 
-chaussette | 80;
 
 typedef struct		s_statinfo
 {
@@ -44,6 +42,16 @@ typedef struct		s_statinfo
 	char 			*d_major;
 }					t_statinfo;
 
+typedef struct		s_type
+{
+	int		a;
+	int		l;
+	int		r;
+	int		R;
+	int		t;
+	int 	n;
+	int		error;
+}					t_type;
 
 typedef struct		s_info
 {

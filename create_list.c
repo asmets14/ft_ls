@@ -1,7 +1,7 @@
 
 #include "ft_ls.h"
 
-t_lslist *create_list(t_lslist *list, char *name)
+t_lslist *create_list(t_lslist *list, char *name) /// del_list fin prog.
 {
 	t_lslist *tmp;
 	t_lslist *new;

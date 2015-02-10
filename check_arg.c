@@ -8,15 +8,17 @@ int check_arg(int ac, char **av)
 	
 	i = 1;
 	j = 1;
+	if (ac == 1)
+		return (1);
 	while(av[i] && av[i][0] == '-') // !! NON Gestion plusieur mm arg !!!
 	{								//av[i] != av[i-1]
 		while (av[i][j])
 		{	
-			if(!OPT(av[i][j]))
-			{
-				ft_putendl("ERROR"); // check_error 
-				return(0);
-			}
+			// if(!OPT(av[i][j]))
+			// {
+			// 	ft_putendl("ERROR"); // check_error 
+			// 	return(0);
+			// }
 			j++;
 		}
 		j = 1;

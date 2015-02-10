@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-t_lslist  *opening(char *str, t_opt option)
+t_lslist  *opening(char *str)
 {
 	t_lslist *l_maj;
 	t_lslist *l_min;

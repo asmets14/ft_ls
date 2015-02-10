@@ -11,7 +11,6 @@ LIB_H = -I libft
 
 SRC = *.c
 
-
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)

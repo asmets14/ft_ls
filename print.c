@@ -1,7 +1,7 @@
 
 #include "ft_ls.h"
 
-void		print(t_lslist *list, t_opt option, char *str)
+void		print(t_lslist *list, t_type *option, char *str)
 {
 	int info;
 	t_lslist *tmp;
@@ -11,22 +11,23 @@ void		print(t_lslist *list, t_opt option, char *str)
 	{
 			tmp = tmp->next;
 	}
-	if (option == 0)
+	
+	if (option->rien == 1)
 	{
 		ft_print_list(tmp);
 	}
-	if (option == OPT_A)
+	if (option->a == 1)
 		ft_print_list(list);
-	if	(option == OPT_R)// Seg fault
+	if	(option->r == 1)// Seg fault
 		ft_print_list(list);
 
-	if ((option == OPT_L) || (option == OPT_N))
+	if ((option->l == 1) || (option->n == 1))
 	{	
-		if (option == OPT_A) // fct pas 
+		if (option->a == 1) // fct pas 
 			get_stat(list, str, option);
 		get_stat(tmp, str, option);
 
 	}
-	if (option == OPT0R)
+	if (option->R == 1)
 		R(tmp, str, option);
 }

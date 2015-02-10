@@ -5,33 +5,31 @@ int main(int ac, char **av)
 {
 	int rep;
 	char *repository;
-	t_opt option;
+	t_type *option;
 	t_lslist *list;
 	
 	list = NULL;
 	rep = 0;
-	if(ac > 1)
+	if((rep = check_arg(ac, av)) != 0)
 	{
-		if((rep = check_arg(ac, av)) != 0)
+		option = init_opt(av, rep);
+		if(rep < ac)
 		{
-			option = init_opt(av, option, rep);
-			if(rep < ac)
+			while(rep < ac)
 			{
-				while(rep < ac)
-				{
-					repository = av[rep];
-					list = opening(repository, option);	
-					rep++;
-				}
-			}
-			else
-			{
-				repository = ".";
-				list = opening(repository, option);
+				repository = av[rep];
+				list = opening(repository);	
+				rep++;
 			}
 		}
-		print(list, option, repository);
+		else
+		{
+			repository = ".";
+			list = opening(repository);
+		}
 	}
+	print(list, option, repository);
+//	}
 	// Ajouter if ac == 1
 	ft_putchar('\n');
 	return (0);

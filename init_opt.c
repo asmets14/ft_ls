@@ -1,21 +1,10 @@
 #include "ft_ls.h"
 
-void	*xmalloc(size_t size)
-{
-	void *cerise;
-
-	cerise = malloc(size);
-	if(!cerise)
-		exit (1);
-	else
-		return(cerise);
-}
-
-t_type *option_new();
+static t_type *option_new()
 {
 	t_type *option;
 
-	option = (t_type *)xmalloc(sizeof(t_type))
+	option = (t_type *)ft_xmalloc(sizeof(t_type));
 	option->a = 0;
 	option->l = 0;
 	option->r = 0;
@@ -32,6 +21,8 @@ t_type *init_opt(char **av, int rep)
 	t_type	*option;
 	i = 1;
 	option = option_new();
+	if (rep == 1)
+		option->rien = 1;
 	while(i < rep)
 	{
 		j = 0;

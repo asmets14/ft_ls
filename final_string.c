@@ -7,9 +7,10 @@ int dossier(char *mode)
 	return (0);
 }
 
-void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option)
+void final_string(t_getallign *len, t_statinfo *tab, int i)
 {
-	char *new;	
+	char *new;
+
 	ft_putstr(tab[i].mode);
 	ft_putstr(" ");
 	create_space(len->len_link, tab[i].link);
@@ -17,12 +18,13 @@ void final_string(t_getallign *len, t_statinfo *tab, int i, t_opt option)
 	ft_putstr(" ");
 	create_space(len->len_gid, tab[i].st_gid);
 	ft_putstr(" ");
-	if(tab[i].d_minor || tab[i].d_major)
+	if (tab[i].mode[0] == 'c' || tab[i].mode[0] == 'b')
 	{
 		ft_putstr(tab[i].d_minor);
 		ft_putstr(", ");
 		ft_putstr(tab[i].d_major);
-	}
+
+	 }
 	else
 		create_space(len->len_taille, tab[i].taille);
 	ft_putstr(" ");

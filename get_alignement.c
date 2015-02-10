@@ -2,7 +2,7 @@
 
 	#include "ft_ls.h"
 
-	void	get_alignement(t_statinfo *tab, int compteur, t_opt option)
+	void	get_alignement(t_statinfo *tab, int compteur, t_type *option)
 	{
 	t_getallign len;
 	int i;
@@ -16,7 +16,6 @@
 	len.len_link = 0;
 	len.index = 0;
 
-	// printf("%s\n",tab[0].name);
 	while(len.index < compteur)
 	{	
 		len.len_nom = len.len_nom < ft_strlen(tab[len.index].name) ? ft_strlen(tab[len.index].name) : len.len_nom;
@@ -32,10 +31,9 @@
 	i = 0;
 
 
-	while(i < compteur - 100)
+	while(i < compteur)
 	{
-	// printf("%d\n", compteur);
-		final_string(&len,tab,i, option);
+		final_string(&len,tab,i);
 		i++;
 	}
 }

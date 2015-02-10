@@ -27,7 +27,7 @@ char *translate_group(gid_t st_gid)
 
 
 
-void register_info(char *way, t_opt option, int len_list, t_lslist *list)
+void register_info(char *way, t_type *option, int len_list, t_lslist *list)
 {
 	struct stat info;
 	t_statinfo	*tab;
@@ -49,7 +49,7 @@ void register_info(char *way, t_opt option, int len_list, t_lslist *list)
 			tab[j].link = ft_itoa(info.st_nlink);
 			tab[j].blksize = ft_itoa(info.st_blocks);
 			tab[j].date = split_date(ctime(&(info.st_mtime)));
-			if(option == OPT_L)
+			if(option->l == 1)
 			{
 				tab[j].st_uid = translate_name(info.st_uid);
 				tab[j].st_gid = translate_group(info.st_gid);
@@ -73,7 +73,7 @@ void register_info(char *way, t_opt option, int len_list, t_lslist *list)
 	get_alignement(tab, len_list, option);
 }
 
-void get_stat(t_lslist *list, char *way, t_opt option)
+void get_stat(t_lslist *list, char *way, t_type *option)
 {
 	char *complet_way;
 	t_lslist *compt;

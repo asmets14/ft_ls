@@ -5,7 +5,7 @@ void	ft_print_list(t_lslist *list)
 {
 	while(list)
 	{
-		printf("print-> : %s\n", list->contenu.name);
+		ft_putendl(list->contenu.name);
 		list = list->next;
 	}
 }

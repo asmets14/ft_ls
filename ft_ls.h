@@ -92,7 +92,7 @@ void ft_print_list_without_point(t_lslist *list);
 void R(t_lslist *list, char *way, t_type *option);
 char *get_mode(struct stat info);
 char *split_date(char *str);
-void create_space(int len, char *tab);
+void create_space(int len, char *tab, char c);
 int check_arg(int ac, char **av);
 
 #endif

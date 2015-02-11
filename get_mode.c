@@ -4,7 +4,7 @@ char *get_mode(struct stat info)
 {
 	char *mode;
 
-	mode = ft_memalloc(11);
+	mode = ft_memalloc(12);
 	if (S_ISLNK(info.st_mode))
 		mode[0] = 'l';
 	else if (S_ISDIR(info.st_mode))
@@ -28,7 +28,8 @@ char *get_mode(struct stat info)
 	mode[7] = ((info.st_mode & S_IROTH) ? 'r' : '-');
 	mode[8] = ((info.st_mode & S_IWOTH) ? 'w' : '-');
 	mode[9] = ((info.st_mode & S_IXOTH) ? 'x' : '-');
-	mode[10] = '\0';
+	mode[10] = ' ';
+	mode[11] = '\0';
 
 	return (mode);
 }

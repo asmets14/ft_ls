@@ -42,7 +42,7 @@ void register_info(char *way, t_type *option, int len_list, t_lslist *list)
 	{
 		
 		complet_way = ft_xstrjoin(way, list->contenu.name);
-		if(stat(complet_way, &info) == 0)
+		if(lstat(complet_way, &info) == 0)
 		{
 			tab[j].name = list->contenu.name;
 			tab[j].taille = ft_itoa(info.st_size);

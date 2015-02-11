@@ -8,11 +8,11 @@ char *split_date(char *str)
 	char *new;
 	int i;
 	int j;
-
+	
 	mois = ft_strsub(str, 4, 3);
-	date = ft_strsub(str, 9, 1);
+	date = ft_strsub(str, 8, 2);
 	heure = ft_strsub (str, 11, 5);
-	new = ft_xstrjoin(mois, "  ");
+	new = ft_xstrjoin(mois, " ");
 	new = ft_xstrjoin_free(new, date, 'g');
 	new = ft_xstrjoin_free (new , " ", 'g');
  	new = ft_xstrjoin_free(new, heure, 'g');

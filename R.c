@@ -32,7 +32,6 @@ void R(t_lslist *list, char *way, t_type *option)
 				 	ft_putendl(":");
 					R(new_lst, fullpath, option);
 				}
-
 			}
 	
 		list = list->next;

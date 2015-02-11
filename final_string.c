@@ -13,10 +13,10 @@ void final_string(t_getallign *len, t_statinfo *tab, int i)
 
 	ft_putstr(tab[i].mode);
 	ft_putstr(" ");
-	create_space(len->len_link, tab[i].link);
-	create_space(len->len_uid, tab[i].st_uid);
+	create_space((len->len_link - 1), tab[i].link, 't');
+	create_space(len->len_uid, tab[i].st_uid, 't');
 	ft_putstr(" ");
-	create_space(len->len_gid, tab[i].st_gid);
+	create_space(len->len_gid, tab[i].st_gid, 'a');
 	ft_putstr(" ");
 	if (tab[i].mode[0] == 'c' || tab[i].mode[0] == 'b')
 	{
@@ -26,7 +26,7 @@ void final_string(t_getallign *len, t_statinfo *tab, int i)
 
 	 }
 	else
-		create_space(len->len_taille, tab[i].taille);
+		create_space(len->len_taille, tab[i].taille, 't');
 	ft_putstr(" ");
 	ft_putstr(tab[i].date);
 	ft_putstr(" ");

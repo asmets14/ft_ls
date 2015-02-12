@@ -20,9 +20,9 @@ void final_string(t_getallign *len, t_statinfo *tab, int i)
 	ft_putstr(" ");
 	if (tab[i].mode[0] == 'c' || tab[i].mode[0] == 'b')
 	{
-		ft_putstr(tab[i].d_minor);
+		create_space(len->len_minor, tab[i].d_minor,  't');
 		ft_putstr(", ");
-		ft_putstr(tab[i].d_major);
+		create_space(len->len_major, tab[i].d_major, 't');
 
 	 }
 	else

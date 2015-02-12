@@ -14,6 +14,8 @@
 	len.len_uid = 0;
 	len.len_gid = 0;
 	len.len_link = 0;
+	len.len_major = 0;
+	len.len_minor = 0;
 	len.index = 0;
 
 	while(len.index < compteur)
@@ -24,6 +26,9 @@
 		len.len_gid = len.len_gid < ft_strlen(tab[len.index].st_gid) ? ft_strlen(tab[len.index].st_gid) : len.len_gid;
 		len.len_taille = len.len_taille < ft_strlen(tab[len.index].taille) ? ft_strlen(tab[len.index].taille) : len.len_taille;
 		len.len_link = len.len_link < ft_strlen(tab[len.index].link) ? ft_strlen(tab[len.index].link) : len.len_link;
+		len.len_major = len.len_major < ft_strlen(tab[len.index].d_major) ? ft_strlen(tab[len.index].d_major) : len.len_major;
+		len.len_minor = len.len_minor < ft_strlen(tab[len.index].d_minor) ? ft_strlen(tab[len.index].d_minor) : len.len_minor;
+		
 		len.index++;
 	}
 	//if (option == (OPT_L + OPT_A)) // gere avec le nbr de dossier cacher

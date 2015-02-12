@@ -1,31 +1,48 @@
 #include "ft_ls.h"
 
+
+static int list_len(t_lslist *list)
+{
+	size_t len;
+
+	if (list == NULL)
+		return (0);
+	len = 0;
+	while (list)
+	{
+		len++;
+		list = list->next;
+	}
+	return (len);
+}
+
 t_lslist  *opening(char *str)
 {
-	t_lslist *l_maj;
-	t_lslist *l_min;
-	t_lslist *tmp;
+
+	t_lslist *list;
 	struct dirent *readfile;
 	DIR *rep;
+	size_t len;
+	char **tab;
+	int i = 0;
 
-	l_maj = NULL;
-	l_min = NULL;
+	list = NULL;
 	readfile = NULL;
 
 		rep = opendir(str);
 		while ((readfile = readdir(rep)) != NULL)
-		{
-			if (readfile->d_name[0] >= 33 && readfile->d_name[0] <= 90)
-				l_maj = create_list(l_maj, readfile->d_name);
-			else if (readfile->d_name[0] >= 97 && readfile->d_name[0] <= 122)
-				l_min = create_list(l_min, readfile->d_name);
-		}
-		if (l_maj && l_min) // List final = l_maj
-		{
-			tmp = l_maj;
-			while (tmp->next)
-				tmp = tmp->next;
-			tmp->next = l_min;
-		}
-	return(l_maj);
+			list = create_list(list, readfile->d_name);
+		len = list_len(list);
+		tab = malloc(len);
+		tab = lst_to_tab(list, tab);
+		bubble_tri(tab, len);
+		// printf("%zu\n", len);
+		// while (tab[i])
+		// {	
+		// 	printf("tab[%d] = %s\n", i, tab[i]);
+		// 	i++;
+		// }
+		list = tab_to_list(tab, len);
+
+	return(list);
 }

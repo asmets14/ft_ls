@@ -26,7 +26,6 @@ void create_space(int len, char *tab, char c)
 	 	
 		new = ft_strjoin(new, tab);
 		tmp = new;
-		// printf("\n======{%s}=====\n", new);
 	}
 	free(new);
 	ft_putstr(tmp);

@@ -75,10 +75,16 @@ typedef struct s_getallign
 	int len_uid;
 	int len_gid;
 	int	len_link;
+	int len_major;
+	int len_minor;
 	int index;
 }				t_getallign;
 
 
+t_lslist *tab_to_list( char **tab, int size);
+void	bubble_tri(char **tab, int size);
+void ft_swap(void *tab, int i, int j);
+char ** lst_to_tab(t_lslist *list, char **tab);
 t_lslist *opening(char *str);
 t_lslist *create_list(t_lslist *list, char *name);
 t_type *init_opt(char **av, int rep);

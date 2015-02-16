@@ -11,22 +11,24 @@ int		twl_isdir(char *path)
 	return (S_ISDIR(st.st_mode));
 }
 
-void R(t_lslist *list, char *way, t_type *option)
+void R(t_lst *list, char *way, t_type *option)
 {
-	t_lslist *new_lst;
+	t_lst *new_lst;
+	t_elem *elem;
 	char *fullpath;
 	struct stat *info;
 
+	elem = list->head;
 	ft_print_list_without_point(list);
 	ft_putchar('\n');
 	way = ft_xstrjoin(way, "/"); 
-	while (list)
+	while (elem)
 	{
-		fullpath = ft_xstrjoin(way, list->contenu.name);	
+		fullpath = ft_xstrjoin(way, elem->data);	
 			if (twl_isdir(fullpath))
 			{
 				new_lst = opening(fullpath);
-				if (!(list->contenu.name[0] == '.'))
+				if (!ft_strnequ(elem->data, ".", 1));
 				{	
 				 	ft_putstr(fullpath);
 				 	ft_putendl(":");
@@ -34,6 +36,6 @@ void R(t_lslist *list, char *way, t_type *option)
 				}
 			}
 	
-		list = list->next;
+		elem = elem->next;
 	}
 }

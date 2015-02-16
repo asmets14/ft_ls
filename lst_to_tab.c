@@ -1,32 +1,34 @@
 
 #include "ft_ls.h"
 
-void	list_del(t_lslist *list)
+void	list_del(t_lst *list)
 {
-	t_lslist *tmp;
-	t_lslist *next;
+	t_elem *tmp;
+	t_elem *next;
 
-	tmp = list;
+	tmp = list->head;
 	while (tmp)
 	{
 		next = tmp->next;
-		free(tmp->contenu.name);
-		free(tmp->next = NULL);
+		// free(tmp->data);
+		tmp->next = NULL;
 		free(tmp);
 		tmp = next;
 	}
 }
 
 
-char **lst_to_tab(t_lslist *list,  char **tab)
+char **lst_to_tab(t_lst *list,  char **tab)
 {
 	int i;
+	t_elem *elem;
 
+	elem = list->head;
 	i = 0;
-	while(list)
+	while(elem)
 	{	
-		tab[i] = list->contenu.name;
-		list = list->next;
+		tab[i] = elem->data;
+		elem = elem->next;
 		i++;
 	}
 	tab[i] = NULL;

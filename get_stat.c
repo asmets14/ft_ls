@@ -27,24 +27,25 @@ char *translate_group(gid_t st_gid)
 
 
 
-void register_info(char *way, t_type *option, int len_list, t_lslist *list)
+void register_info(char *way, t_type *option, int len_list, t_lst *list)
 {
 	struct stat info;
 	t_statinfo	*tab;
 	char *complet_way;
 	int j;
 	int total;
+	t_elem *elem;
 	
+	elem = list->head;
 	total = 0; 
 	j = 0;
 	tab = (t_statinfo *)malloc(sizeof(t_statinfo) * (len_list +1));
-	while(list != NULL)
-	{
-		
-		complet_way = ft_xstrjoin(way, list->contenu.name);
+	while(elem)
+	{		
+		complet_way = ft_xstrjoin(way, elem->data);
 		if(lstat(complet_way, &info) == 0)
 		{
-			tab[j].name = list->contenu.name;
+			tab[j].name = elem->data;
 			tab[j].taille = ft_itoa(info.st_size);
 			tab[j].link = ft_itoa(info.st_nlink);
 			tab[j].blksize = ft_itoa(info.st_blocks);
@@ -65,7 +66,7 @@ void register_info(char *way, t_type *option, int len_list, t_lslist *list)
 			j++;
 		}
 		total += info.st_blocks;
-		list = list->next;
+		elem = elem->next;
 	}
 	ft_putstr("total ");
 	ft_putnbr(total);
@@ -73,18 +74,18 @@ void register_info(char *way, t_type *option, int len_list, t_lslist *list)
 	get_alignement(tab, len_list, option);
 }
 
-void get_stat(t_lslist *list, char *way, t_type *option)
+void get_stat(t_lst *list, char *way, t_type *option)
 {
 	char *complet_way;
-	t_lslist *compt;
 	t_statinfo stock;
 	int i;
+	t_elem *elem;
 
 	i = 0;
-	compt = list;
-	while(compt != NULL)
+	elem = list->head;
+	while(elem)
 	{
-		compt = compt->next;
+		elem = elem->next;
 		i++;
 	}
 	way = ft_strjoin(way, "/");

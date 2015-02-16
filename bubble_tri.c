@@ -12,7 +12,7 @@ void	bubble_tri(char **tab, int size)
 		i = 0;
 		while (i < size - j - 1)
 		{	
-			if (ft_strcmp(tab[i], tab[i+1]) < 0)
+			if (ft_strcmp(tab[i], tab[i+1]) > 0)
 				ft_swap(tab ,i, (i + 1));
 			i++;
 		}

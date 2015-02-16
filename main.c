@@ -6,7 +6,7 @@ int main(int ac, char **av)
 	int rep;
 	char *repository;
 	t_type *option;
-	t_lslist *list;
+	t_lst *list;
 	
 	list = NULL;
 	rep = 0;
@@ -28,8 +28,6 @@ int main(int ac, char **av)
 			list = opening(repository);
 		}
 	}
-	printf("la liste commence ICI \n");
-	ft_print_list(list);
 	print(list, option, repository);
 //	}
 	// Ajouter if ac == 1

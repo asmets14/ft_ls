@@ -1,36 +1,46 @@
 
 #include "ft_ls.h"
 
-void		print(t_lslist *list, t_type *option, char *str)
+void		print(t_lst *list, t_type *option, char *str)
 {
 	int info;
-	t_lslist *tmp;
+	t_elem *tmp;
+	t_lst *lst2;
 
-	tmp = list;
-	ft_print_list(list);
-	// printf("{co : %s}\n", tmp->contenu.name);
-	// while (tmp->contenu.name[0] == '.')
-	// {
-	// 		tmp = tmp->next;
-	// }
+	tmp = list->head;
+
+	lst2 = lst_newlist();
 	
+	while (ft_strnequ(tmp->data, ".", 1))
+			tmp = tmp->next;
+	t_elem *next;
+	while (tmp)
+	{
+		
+		next = tmp->next;
+		lst_put_end(lst2, lst_newelem(ft_strdup(tmp->data)));
+		tmp = next;
+
+	}
+	// ft_print_list(lst2);
 	if (option->rien == 1)
 	{
-		printf("ici c'est bon\n");
-		ft_print_list(tmp);
+		ft_print_list(lst2);
 	}
 	if (option->a == 1)
+	{
 		ft_print_list(list);
-	if	(option->r == 1)// Seg fault
-		ft_print_list(list);
+	}
+	if	(option->r == 1)// faire l affichage
+		//ft_print_list(list);
 
 	if ((option->l == 1) || (option->n == 1))
 	{	
-		if (option->a == 1) // fct pas 
+		if (option->a == 1) 
 			get_stat(list, str, option);
-		get_stat(tmp, str, option);
+		get_stat(lst2, str, option);
 
 	}
 	if (option->R == 1)
-		R(tmp, str, option);
+		R(lst2, str, option);
 }

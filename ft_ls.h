@@ -13,21 +13,6 @@
 # include "libft/libft.h"
 # include "liba/liba.h"
 
-// # define OPT1(x) (x == 'l' || x == 'n' || x == 'a' || x == 't') 
-// # define OPT2(x) (x == 'r' || x == 'R' )
-// # define OPT(x) (OPT1(x) || OPT2(x)) 
-
-// typedef int			t_opt;
-
-// # define OPT0R 0x20
-// # define OPT_R 0x10
-// # define OPT_T 0x08
-// # define OPT_A 0x04
-// # define OPT_N 0x02
-// # define OPT_L 0x01
-
-
-
 typedef struct		s_statinfo
 {
 	char			*taille;
@@ -55,17 +40,6 @@ typedef struct		s_type
 	int		error;
 }					t_type;
 
-typedef struct		s_info
-{
-		char *name;
-}					t_info;
-
-typedef struct		s_lslist
-{
-	t_info		contenu;
-	char *str;
-	struct s_lslist	*next;
-}					t_lslist;
 
 typedef struct s_getallign
 {
@@ -82,21 +56,21 @@ typedef struct s_getallign
 }				t_getallign;
 
 
-
+void ft_no_major_exist(char caract, size_t len);
 void	bubble_tri(char **tab, int size);
 void ft_swap(void *tab, int i, int j);
-char ** lst_to_tab(t_lslist *list, char **tab);
-t_lslist *opening(char *str);
-t_lslist *create_list(t_lslist *list, char *name);
+char ** lst_to_tab(t_lst *list, char **tab);
+t_lst *opening(char *str);
+void create_list(t_lst *list, char *name);
 t_type *init_opt(char **av, int rep);
 int main(int ac, char **av);
-void print(t_lslist *list, t_type *option, char *str);
-void get_stat(t_lslist *list, char *way, t_type *option);
+void print(t_lst *list, t_type *option, char *str);
+void get_stat(t_lst *list, char *way, t_type *option);
 void get_alignement(t_statinfo *tab, int compteur, t_type *option);
 void final_string(t_getallign *len, t_statinfo *tab, int i);
-void ft_print_list(t_lslist *list);
-void ft_print_list_without_point(t_lslist *list);
-void R(t_lslist *list, char *way, t_type *option);
+void ft_print_list(t_lst *list);
+void ft_print_list_without_point(t_lst *list);
+void R(t_lst *list, char *way, t_type *option);
 char *get_mode(struct stat info);
 char *split_date(char *str);
 void create_space(int len, char *tab, char c);

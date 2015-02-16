@@ -1,11 +1,14 @@
 
 #include "ft_ls.h"
 
-void	ft_print_list(t_lslist *list)
+void	ft_print_list(t_lst *list)
 {
-	while(list)
+	t_elem *elem;
+
+	elem = list->head;
+	while(elem)
 	{
-		ft_putendl(list->contenu.name);
-		list = list->next;
+		ft_putendl(elem->data);
+		elem = elem->next;
 	}
 }

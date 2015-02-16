@@ -1,12 +1,11 @@
 #include "ft_ls.h"
+#include <liba.h>
 
 
 static int list_len(t_lslist *list)
 {
 	size_t len;
 
-	if (list == NULL)
-		return (0);
 	len = 0;
 	while (list)
 	{
@@ -19,11 +18,12 @@ static int list_len(t_lslist *list)
 t_lslist  *opening(char *str)
 {
 
-	t_lslist *list;
-	struct dirent *readfile;
-	DIR *rep;
-	size_t len;
-	char **tab;
+	t_lslist 		*list;
+	t_lst 			*new;
+	char 			**tab;
+	DIR 			*rep;
+	struct dirent 	*readfile;
+	size_t 			len;
 	int i = 0;
 
 	list = NULL;
@@ -33,16 +33,12 @@ t_lslist  *opening(char *str)
 		while ((readfile = readdir(rep)) != NULL)
 			list = create_list(list, readfile->d_name);
 		len = list_len(list);
-		tab = malloc(len);
+		tab = malloc(sizeof(char *) * len + 1);
 		tab = lst_to_tab(list, tab);
 		bubble_tri(tab, len);
-		// printf("%zu\n", len);
-		// while (tab[i])
-		// {	
-		// 	printf("tab[%d] = %s\n", i, tab[i]);
-		// 	i++;
-		// }
-		list = tab_to_list(tab, len);
+		new = tab_to_lst(tab);
+		printf("et ici ca commence ?\n");
+		ft_print_list(list);
 
 	return(list);
 }

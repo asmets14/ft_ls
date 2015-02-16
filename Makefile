@@ -1,13 +1,13 @@
 NAME = ft_ls
 
-cc = GCC
+CC = gcc
 
 FLAGS = -Wall -Werror -Wextra
 
-HEAD = -I .
+HEAD = -I . 
 
-LIB = libft/libft.a
-LIB_H = -I libft
+LIB = libft/libft.a -L liba -la
+LIB_H = -I libft -I liba
 
 SRC = *.c
 
@@ -16,8 +16,8 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) :
-	$(CC) -c $(SRC) $(LIB_H) $(HEAD)
-	$(CC) $(OBJ) $(LIB_H) $(LIB) $(HEAD) -o $(NAME)
+	$(CC) -c $(SRC) $(HEAD)  $(LIB_H) 
+	$(CC) $(LIB_H) $(HEAD) $(LIB) -o $(NAME) $(OBJ) 
 
 clean :
 	rm -f $(OBJ)

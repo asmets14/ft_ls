@@ -1,6 +1,23 @@
 
 #include "ft_ls.h"
 
+void	list_del(t_lslist *list)
+{
+	t_lslist *tmp;
+	t_lslist *next;
+
+	tmp = list;
+	while (tmp)
+	{
+		next = tmp->next;
+		free(tmp->contenu.name);
+		free(tmp->next = NULL);
+		free(tmp);
+		tmp = next;
+	}
+}
+
+
 char **lst_to_tab(t_lslist *list,  char **tab)
 {
 	int i;
@@ -13,7 +30,8 @@ char **lst_to_tab(t_lslist *list,  char **tab)
 		i++;
 	}
 	tab[i] = NULL;
-	free(list);
-	return (&tab[0]);
+	list_del(list);
+	list = NULL;
+	return (tab);
 	
 }

@@ -7,13 +7,16 @@ void		print(t_lslist *list, t_type *option, char *str)
 	t_lslist *tmp;
 
 	tmp = list;
-	while (tmp->contenu.name[0] == '.')
-	{
-			tmp = tmp->next;
-	}
+	ft_print_list(list);
+	// printf("{co : %s}\n", tmp->contenu.name);
+	// while (tmp->contenu.name[0] == '.')
+	// {
+	// 		tmp = tmp->next;
+	// }
 	
 	if (option->rien == 1)
 	{
+		printf("ici c'est bon\n");
 		ft_print_list(tmp);
 	}
 	if (option->a == 1)

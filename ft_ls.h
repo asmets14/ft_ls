@@ -4,13 +4,14 @@
 # include <string.h>
 # include <dirent.h>
 # include <sys/stat.h>
-# include "libft/libft.h"
 # include <time.h>
 # include <sys/types.h>
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
 # include <stdio.h>
+# include "libft/libft.h"
+# include "liba/liba.h"
 
 // # define OPT1(x) (x == 'l' || x == 'n' || x == 'a' || x == 't') 
 // # define OPT2(x) (x == 'r' || x == 'R' )
@@ -18,12 +19,12 @@
 
 // typedef int			t_opt;
 
-# define OPT0R 0x20
-# define OPT_R 0x10
-# define OPT_T 0x08
-# define OPT_A 0x04
-# define OPT_N 0x02
-# define OPT_L 0x01
+// # define OPT0R 0x20
+// # define OPT_R 0x10
+// # define OPT_T 0x08
+// # define OPT_A 0x04
+// # define OPT_N 0x02
+// # define OPT_L 0x01
 
 
 
@@ -81,7 +82,7 @@ typedef struct s_getallign
 }				t_getallign;
 
 
-t_lslist *tab_to_list( char **tab, int size);
+
 void	bubble_tri(char **tab, int size);
 void ft_swap(void *tab, int i, int j);
 char ** lst_to_tab(t_lslist *list, char **tab);
